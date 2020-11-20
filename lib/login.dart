@@ -218,12 +218,12 @@ class _LoginPageState extends State<LoginPage>{
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.only(bottom:30.0,right: 30.0,left: 30.0),
                 height: size.height*0.6,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 20,),
+                    // SizedBox(height: 20,),
                     Container(
                       height: 60,
                       padding: EdgeInsets.all(5),
@@ -297,7 +297,7 @@ class _LoginPageState extends State<LoginPage>{
                       },
                       child: Container(
                         margin: EdgeInsets.only(left: size.width*0.2,right: size.width*0.2),
-                        height: 40,
+                        height: 50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
                           gradient: LinearGradient(
