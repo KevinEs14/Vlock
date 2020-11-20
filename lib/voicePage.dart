@@ -13,6 +13,7 @@ class _VoicePageState extends State<VoicePage> {
   Size size;
   double tamMic=0.3;
   int dir=1;
+  bool escuchar=false;
   Color _color;
 
   @override
@@ -21,21 +22,27 @@ class _VoicePageState extends State<VoicePage> {
     hilo();
   }
   cambiarTam(){
-
-    setState(() {
-      tamMic+=0.0015*dir;
-      if(tamMic>=0.45){
-        dir=-1;
-        _color=Colors.red.withOpacity(0.1);
-      }
-      else{
-        if(tamMic<=0.3){
-          dir=1;
-          _color=Colors.red.withOpacity(0.9);
+    if(escuchar) {
+      setState(() {
+        tamMic += 0.0015 * dir;
+        if (tamMic >= 0.45) {
+          dir = -1;
+          _color = Colors.red.withOpacity(0.1);
         }
-      }
-    });
-    hilo();
+        else {
+          if (tamMic <= 0.3) {
+            dir = 1;
+            _color = Colors.red.withOpacity(0.9);
+          }
+        }
+      });
+    }else{
+      setState(() {
+        tamMic=0.3;
+      });
+    }
+      hilo();
+
   }
   hilo()async{
     await Future.delayed(Duration(milliseconds: 1));
@@ -48,7 +55,7 @@ class _VoicePageState extends State<VoicePage> {
         body:Column(
           children: [
             SizedBox(height: size.height*0.3,),
-            Center(child: Text("Presione para escuchar el comando.",style: TextStyle(color: Colors.black),)),
+            Center(child: Text("Presione para decir la contraseña",style: TextStyle(color: Colors.black),)),
             Expanded(
                 child: Center(
                   child: Stack(
@@ -89,10 +96,17 @@ class _VoicePageState extends State<VoicePage> {
                       ),
 
                       //Image(image: AssetImage("assets/images/voiceButton.jpg"),),
-                      Container(
-                        width: size.width,
-                        height: size.height*0.6,
-                        child: Icon(Icons.mic_rounded,size: size.width*0.2,color: Color(0xff99091A)),
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            escuchar=!escuchar;
+                          });
+                        },
+                        child: Container(
+                          width: size.width,
+                          height: size.height*0.6,
+                          child: Icon(Icons.mic_rounded,size: size.width*0.2,color: Color(0xff99091A)),
+                        ),
                       )
                     ],
                   ),
