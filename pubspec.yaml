@@ -25,6 +25,10 @@ dependencies:
     sdk: flutter
   local_auth: 0.6.3+4
   fluttertoast:
+  speech_to_text: ^2.7.0
+  http:
+  pattern_lock: 1.0.3
+  flutter_numpad_widget: ^0.1.1
 
 
   # The following adds the Cupertino Icons font to your application.

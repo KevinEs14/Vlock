@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:simple_animations/simple_animations.dart';
+import 'package:vlock/patron.dart';
 import 'package:vlock/voicePage.dart';
 class LoginPage extends StatefulWidget {
   @override
@@ -71,9 +72,9 @@ class _LoginPageState extends State<LoginPage>{
     final String message = authenticated ? 'Authorized' : 'Not Authorized';
     setState(() {
       _authorized = message;
+
     });
   }
-
   void _cancelAuthentication() {
     auth.stopAuthentication();
   }
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage>{
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _authenticate();
       if(_authorized=="Authorized"){
-        Navigator.push(context,MaterialPageRoute(builder: (context)=>VoicePage()));
+        Navigator.push(context,MaterialPageRoute(builder: (context)=>Patron()));
       }
       /*showDialog(context: context,
           builder: (BuildContext context){
@@ -289,7 +290,7 @@ class _LoginPageState extends State<LoginPage>{
                     GestureDetector(
                       onTap: (){
                         if(password.text.toString()=="1234abc"&&nombre.text.toString()=="admin"){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>VoicePage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Patron()));
                         }
                         else{
                           Fluttertoast.showToast(msg: "Usuario o contraseña incorrectos",backgroundColor: Colors.black.withOpacity(0.5));
